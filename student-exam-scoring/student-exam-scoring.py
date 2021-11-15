@@ -48,6 +48,6 @@ while True:
     if event == 'Submit':
         df = df.append(values, ignore_index=True)
         df.to_excel(EXCEL_FILE, index=False)
-        sg.popup('Data saved!')
+        sg.popup('Data has been saved')
         clear_input()
 window.close()
