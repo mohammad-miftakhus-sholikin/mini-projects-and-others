@@ -13,19 +13,18 @@ df = pd.read_excel(EXCEL_FILE)
 
 
 ## Adding form input and output
-# input and output layout
+# example code of input and output layout
 layout = [
-    # form header
-    [sg.Text('Form to enter exam scores:')],
-    # adding no
-    [sg.Text('No', size=(15,1)), sg.InputText(key='No')],
-    # adding Student_number
-    [sg.Text('Student_number', size=(15,1)), sg.InputText(key='Student_number')],
-    # adding Name
+    [sg.Text('Please fill out the following fields:')],
     [sg.Text('Name', size=(15,1)), sg.InputText(key='Name')],
-    # adding Score
-    [sg.Text('Score', size=(15,1)), sg.InputText(key='Score')],
-    # submit and exit button
+    [sg.Text('City', size=(15,1)), sg.InputText(key='City')],
+    [sg.Text('Favorite Colour', size=(15,1)), sg.Combo(['Green', 'Blue', 'Red'], key='Favorite Colour')],
+    [sg.Text('I speak', size=(15,1)),
+                            sg.Checkbox('German', key='German'),
+                            sg.Checkbox('Spanish', key='Spanish'),
+                            sg.Checkbox('English', key='English')],
+    [sg.Text('No. of Children', size=(15,1)), sg.Spin([i for i in range(0,16)],
+                                                       initial_value=0, key='Children')],
     [sg.Submit(), sg.Button('Clear'), sg.Exit()]
 ]
 
