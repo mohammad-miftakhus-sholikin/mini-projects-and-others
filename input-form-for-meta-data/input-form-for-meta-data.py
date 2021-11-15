@@ -32,7 +32,7 @@ layout = [
 ## Define title and layout
 window = sg.Window('Form to input meta data', layout)
 
-## If has empty values
+## Delete all values
 def clear_input():
     for key in values:
         window[key]('')
@@ -49,5 +49,5 @@ while True:
         df = df.append(values, ignore_index=True)
         df.to_excel(EXCEL_FILE, index=False)
         sg.popup('Data saved!')
-        clear_input()
+        #clear_input()
 window.close()

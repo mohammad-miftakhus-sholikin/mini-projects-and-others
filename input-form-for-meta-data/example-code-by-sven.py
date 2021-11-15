@@ -8,7 +8,7 @@ sg.theme('BlueMono')
 
 
 ## Input excel file (note: this file must same in name)
-EXCEL_FILE = 'student-exam-score.xlsx'
+EXCEL_FILE = 'input-form-for-meta-data.xlsx'
 df = pd.read_excel(EXCEL_FILE)
 
 
@@ -31,7 +31,7 @@ layout = [
 ## Define title and layout
 window = sg.Window('Form to enter exam scores', layout)
 
-## If has empty values
+## Delete all values
 def clear_input():
     for key in values:
         window[key]('')
