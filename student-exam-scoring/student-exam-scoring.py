@@ -46,7 +46,7 @@ layout = [
 ]
 
 ## Define title and layout
-window = sg.Window('From for students exam scores', layout)
+window = sg.Window('Form to enter exam scores', layout)
 
 ## If has empty values
 def clear_input():
