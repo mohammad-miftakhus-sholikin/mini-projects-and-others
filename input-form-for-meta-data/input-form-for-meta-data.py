@@ -4,7 +4,7 @@ import pandas as pd
 
 
 ## Add some color to the window
-sg.theme('BlueMono')
+sg.theme('DefaultNoMoreNagging')
 
 
 ## Input excel file (note: this file must same in name)
@@ -16,21 +16,21 @@ df = pd.read_excel(EXCEL_FILE)
 # input and output layout
 layout = [
     # form header
-    [sg.Text('Form to input meta data:')],
+    [sg.Text('form to input meta data:')],
     # adding no
-    [sg.Text('No', size=(15,1)), sg.InputText(key='No')],
-    # adding Study
-    [sg.Text('Study', size=(15,1)), sg.InputText(key='Study')],
-    # adding Author
-    [sg.Text('Author', size=(15,1)), sg.InputText(key='Author')],
-    # adding Data1
-    [sg.Text('Data1', size=(15,1)), sg.InputText(key='Data1')],
+    [sg.Text('no', size=(15,1)), sg.InputText(key='no')],
+    # adding study
+    [sg.Text('study', size=(15,1)), sg.InputText(key='study')],
+    # adding author
+    [sg.Text('author', size=(15,1)), sg.InputText(key='author')],
+    # adding data_1
+    [sg.Text('data_1', size=(15,1)), sg.InputText(key='data_1')],
     # submit and exit button
-    [sg.Submit(), sg.Button('Clear'), sg.Exit()]
+    [sg.Submit(button_text='submit'), sg.Button('clear'), sg.Exit(button_text='exit')]
 ]
 
 ## Define title and layout
-window = sg.Window('Form to input meta data', layout)
+window = sg.Window('form to input meta data', layout)
 
 ## Delete all values
 def clear_input():
@@ -41,12 +41,13 @@ def clear_input():
 ## Define functional button
 while True:
     event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Exit':
+    if event == sg.WIN_CLOSED or event == 'exit':
         break
-    if event == 'Clear':
+    if event == 'clear':
         clear_input()
-    if event == 'Submit':
+    if event == 'submit':
         df = df.append(values, ignore_index=True)
         df.to_excel(EXCEL_FILE, index=False)
-        sg.popup('Data has been saved')
+        sg.popup('data has been saved')
+        clear_input()
 window.close()

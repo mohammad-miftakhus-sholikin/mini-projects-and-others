@@ -4,7 +4,7 @@ import pandas as pd
 
 
 ## Add some color to the window
-sg.theme('BlueMono')
+sg.theme('DefaultNoMoreNagging')
 
 
 ## Input excel file (note: this file must same in name)
@@ -16,21 +16,21 @@ df = pd.read_excel(EXCEL_FILE)
 # input and output layout
 layout = [
     # form header
-    [sg.Text('Form to enter exam scores:')],
+    [sg.Text('form to enter exam scores:')],
     # adding no
-    [sg.Text('No', size=(15,1)), sg.InputText(key='No')],
-    # adding Student_number
-    [sg.Text('Student_number', size=(15,1)), sg.InputText(key='Student_number')],
-    # adding Name
-    [sg.Text('Name', size=(15,1)), sg.InputText(key='Name')],
-    # adding Score
-    [sg.Text('Score', size=(15,1)), sg.InputText(key='Score')],
+    [sg.Text('no', size=(15,1)), sg.InputText(key='no')],
+    # adding student_id
+    [sg.Text('student_id', size=(15,1)), sg.InputText(key='student_id')],
+    # adding student_name
+    [sg.Text('student_name', size=(15,1)), sg.InputText(key='student_name')],
+    # adding score
+    [sg.Text('score', size=(15,1)), sg.InputText(key='score')],
     # submit and exit button
-    [sg.Submit(), sg.Button('Clear'), sg.Exit()]
+    [sg.Submit(button_text='submit'), sg.Button('clear'), sg.Exit(button_text='exit')]
 ]
 
 ## Define title and layout
-window = sg.Window('Form to enter exam scores', layout)
+window = sg.Window('form to enter exam scores', layout)
 
 ## Delete all values
 def clear_input():
@@ -41,13 +41,13 @@ def clear_input():
 ## Define functional button
 while True:
     event, values = window.read()
-    if event == sg.WIN_CLOSED or event == 'Exit':
+    if event == sg.WIN_CLOSED or event == 'exit':
         break
-    if event == 'Clear':
+    if event == 'clear':
         clear_input()
-    if event == 'Submit':
+    if event == 'submit':
         df = df.append(values, ignore_index=True)
         df.to_excel(EXCEL_FILE, index=False)
-        sg.popup('Data has been saved')
+        sg.popup('data has been saved')
         clear_input()
 window.close()
