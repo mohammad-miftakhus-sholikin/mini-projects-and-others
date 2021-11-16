@@ -9,8 +9,8 @@ sg.theme('DefaultNoMoreNagging')
 
 
 ## Input excel file (note: this file must same in name)
-EXCEL_FILE = 'input-form-for-meta-data.xlsx'
-df = pd.read_excel(EXCEL_FILE)
+excel_file = 'input-form-for-meta-data.xlsx'
+df = pd.read_excel(excel_file)
 
 
 ## Adding symbols and others
@@ -22,15 +22,15 @@ symbol_down = '﹀'
 ### LAYOUT ###
 ## Adding form input and output
 
-# adding data_i as function
-def adding_data(data_i, unit_i):
-    # adding data_i
-    return sg.Text(data_i, size=(15,1)), sg.InputText(key=data_i, size=(10,1)), sg.Text(unit_i, size=(5,1))
-
 # adding input_i as function
 def adding_input(input_i):
     # adding input_i
     return sg.Text(input_i, size=(15,1)), sg.InputText(key=input_i, size=(10,1))
+
+# adding data_i as function
+def adding_data(data_i, unit_i):
+    # adding data_i
+    return sg.Text(data_i, size=(15,1)), sg.InputText(key=data_i, size=(10,1)), sg.Text(unit_i, size=(5,1))
 
 # adding section_i function
 def collapse(layout, key, visible):
@@ -44,7 +44,7 @@ def collapse(layout, key, visible):
     return sg.pin(sg.Column(layout, key=key, visible=visible))
 
 # section 1: general data
-section_1 = [
+section_1 = [ 
     # adding no, study, and author
     adding_input('no'), adding_input('study'), adding_input('author'),
     # adding num_exp, exp_dsgn, and num_rep
@@ -68,7 +68,7 @@ section_2 = [
 # section 3: digestibility data
 section_3 = [
     # adding digestibility_data_1
-    adding_data('digestibility_data_1', 'unit_1'),
+    adding_data('digestibility_data_1', 'unit_1'), adding_data('digestibility_data_2', 'unit_2'),
     # adding digestibility_data_2
     adding_data('digestibility_data_2', 'unit_2'),
     # adding digestibility_data_3
@@ -143,7 +143,7 @@ while True:
     # submit all input and data
     if event == 'submit':
         df = df.append(values, ignore_index=True)
-        df.to_excel(EXCEL_FILE, index=False)
+        df.to_excel(excel_file, index=False)
         sg.popup('data has been saved')
         clear_input()
 window.close()

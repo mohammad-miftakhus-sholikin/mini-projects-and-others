@@ -9,8 +9,8 @@ sg.theme('DefaultNoMoreNagging')
 
 
 ## Input excel file (note: this file must same in name)
-EXCEL_FILE = 'student-exam-score.xlsx'
-df = pd.read_excel(EXCEL_FILE)
+excel_file = 'input-form-for-student-exam-scoring.xlsx'
+df = pd.read_excel(excel_file)
 
 
 ## Adding symbols and others
@@ -143,6 +143,6 @@ while True:
     # submit all input and data
     if event == 'submit':
         df = df.append(values, ignore_index=True)
-        df.to_excel(EXCEL_FILE, index=False)
+        df.to_excel(excel_file, index=False)
         sg.popup('data has been saved')
 window.close()
